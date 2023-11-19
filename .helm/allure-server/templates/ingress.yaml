@@ -29,11 +29,13 @@ spec:
         paths:
           {{- range $ingressExtraPaths }}
           - path: {{ default "/" .path | quote }}
+            pathType: Prefix
             backend:
               serviceName: {{ default $serviceName .service }}
               servicePort: {{ default $servicePort .port }}
           {{- end }}
           - path: {{ default "/" .path | quote }}
+            pathType: Prefix
             backend:
               serviceName: {{ default $serviceName .service }}
               servicePort: {{ default $servicePort .servicePort }}
